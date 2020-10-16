@@ -7,7 +7,6 @@ import { AuthContext } from '../../shared/context/auth-context';
 import ContentFeeds from '../../blog/components/ContentFeeds';
 import Avatar from '../../shared/components/UIElements/Avatar';
 import Cover from '../../shared/components/UIElements/Cover';
-import Bloggit from '../../shared/components/UIElements/Bloggit';
 import StickyIcon from '../../shared/components/UIElements/StickyIcon';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 
@@ -82,7 +81,6 @@ const UserPage = () => {
 				)}
 				{!isLoading && userInfo && blogList && actList && (
 					<>
-						<Bloggit />
 						<Cover
 							image={`${process.env.REACT_APP_HOST_URL}/${userInfo.cover}`}
 							alt={`${userInfo.name}'s Cover`}

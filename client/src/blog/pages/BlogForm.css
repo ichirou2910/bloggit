@@ -5,10 +5,6 @@
 	justify-content: space-between;
 }
 
-.blog-form__title {
-	height: 10vh;
-}
-
 .blog-form__label {
 	display: block;
 	font-weight: bold;

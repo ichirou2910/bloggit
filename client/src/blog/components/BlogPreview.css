@@ -16,6 +16,8 @@
 	padding: 1rem 1.5rem;
 	background-color: var(--lighter-primary-color);
 	box-shadow: 0 2.5px 6px rgba(0, 0, 0, 0.5);
+	font-size: larger;
+	text-align: justify;
 }
 
 .preview-content h1,

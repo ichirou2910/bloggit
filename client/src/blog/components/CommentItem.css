@@ -5,7 +5,7 @@
 .comment-item__card {
 	display: flex;
 	font-size: 120%;
-	font-weight: 300;
+	font-weight: 400;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 }
 
@@ -27,6 +27,7 @@
 
 .comment-item__content {
 	margin: 0;
+	font-size: 90%;
 	margin-bottom: auto;
 }
 
