@@ -21,6 +21,7 @@ import './Auth.css';
 const Auth = () => {
 	const auth = useContext(AuthContext);
 	const [isLoginMode, setIsLoginMode] = useState(true);
+	const [message, setMessage] = useState('');
 	const { isLoading, error, sendRequest } = useHttpClient();
 
 	const [formState, inputHandler, setFormData] = useForm(
@@ -39,6 +40,7 @@ const Auth = () => {
 
 	const authSubmitHandler = async (event) => {
 		event.preventDefault();
+		setMessage('');
 
 		if (isLoginMode) {
 			try {
@@ -60,6 +62,10 @@ const Auth = () => {
 				console.log(err);
 			}
 		} else {
+			if (formState.inputs.password.value !== formState.inputs.confirm.value) {
+				setMessage('Confirm password does not match');
+				return;
+			}
 			try {
 				const resData = await sendRequest(
 					`${process.env.REACT_APP_API_URL}/user/register`,
@@ -140,7 +146,7 @@ const Auth = () => {
 						type="text"
 						label="Name"
 						validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(3)]}
-						errorText="You must enter Username"
+						errorText="Username must be more than 3 characters"
 						onInput={inputHandler}
 					/>
 					<Input
@@ -153,7 +159,7 @@ const Auth = () => {
 							VALIDATOR_MINLENGTH(8),
 							VALIDATOR_MAXLENGTH(25),
 						]}
-						errorText="You must enter Password"
+						errorText="Password must be between 8-25 characters"
 						onInput={inputHandler}
 					/>
 					{!isLoginMode && (
@@ -172,6 +178,7 @@ const Auth = () => {
 						/>
 					)}
 					<p>{error}</p>
+					<p>{message}</p>
 					<Button type="submit" disabled={!formState.isValid}>
 						{isLoginMode ? 'LOGIN' : 'REGISTER'}
 					</Button>
