@@ -10,6 +10,8 @@ import { useAuth } from './shared/hooks/auth-hook';
 
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import MainPage from './shared/pages/MainPage';
+import NewBlog from './blog/pages/NewBlog';
+import EditBlog from './blog/pages/EditBlog';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
 
 import './App.css';
@@ -18,8 +20,6 @@ const Auth = React.lazy(() => import('./user/pages/Auth'));
 const UserPage = React.lazy(() => import('./user/pages/UserPage'));
 const EditUser = React.lazy(() => import('./user/pages/EditUser'));
 const BlogPage = React.lazy(() => import('./blog/pages/BlogPage'));
-const NewBlog = React.lazy(() => import('./blog/pages/NewBlog'));
-const EditBlog = React.lazy(() => import('./blog/pages/EditBlog'));
 
 const App = () => {
 	const { token, login, logout, loginInfo, setInfo } = useAuth();
@@ -87,7 +87,7 @@ const App = () => {
 					<Suspense
 						fallback={
 							<div>
-								<LoadingSpinner asOverlay />
+								<LoadingSpinner />
 							</div>
 						}
 					>
