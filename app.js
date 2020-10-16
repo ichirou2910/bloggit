@@ -15,7 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/uploads/images', express.static(path.join('uploads', 'images')));
-app.use(express.static(path.join('public')));
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 // Routes
 app.use('/api/user', require('./routes/user.route'));
