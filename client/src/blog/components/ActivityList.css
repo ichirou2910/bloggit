@@ -8,6 +8,17 @@
 	font-size: 120%;
 }
 
+.activity-list__navi {
+	background-color: var(--lighter-primary-color);
+	margin: 1rem 0;
+	display: flex;
+}
+
+.activity-list__navi p {
+	flex-grow: 1;
+	text-align: center;
+}
+
 .activity-list__header {
 	background-color: var(--dark-primary-color);
 	text-align: center;

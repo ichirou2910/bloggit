@@ -8,6 +8,17 @@
 	font-size: 120%;
 }
 
+.blog-list__navi {
+	background-color: var(--lighter-primary-color);
+	margin: 1rem 0;
+	display: flex;
+}
+
+.blog-list__navi p {
+	flex-grow: 1;
+	text-align: center;
+}
+
 .blog-list__content {
 	list-style: none;
 	padding-left: 0;

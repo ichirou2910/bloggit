@@ -1,10 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import ActivityItem from './ActivityItem';
+import Button from '../../shared/components/FormElements/Button';
 
 import './ActivityList.css';
 
+const itemsPerPage = 10;
+
 const ActivityList = (props) => {
+	const [acts, setActs] = useState([]);
+	const [page, setPage] = useState(0);
+
+	useEffect(() => {
+		if (props.activities) {
+			setActs(
+				props.activities.slice(
+					page * itemsPerPage,
+					Math.min(props.activities.length, page * itemsPerPage + itemsPerPage)
+				)
+			);
+		}
+	}, [props.activities, page]);
+
+	const pageInc = () => {
+		if (page < props.activities.length / itemsPerPage - 1)
+			setPage((page) => page + 1);
+	};
+
+	const pageDec = () => {
+		if (page > 0) setPage((page) => page - 1);
+	};
+
 	return (
 		<div className="activity-list">
 			<div className="activity-list__header">
@@ -13,20 +39,31 @@ const ActivityList = (props) => {
 			{!props.activities || props.activities.length === 0 ? (
 				<p className="activity-list__empty">No activity so far</p>
 			) : (
-				<ul className="activity-list__content">
-					{props.activities.map((item, index) => {
-						return (
-							<ActivityItem
-								key={index}
-								user={item.user}
-								blogId={item.blogId}
-								action={item.type === 'comment' ? 'commented on' : 'posted'}
-								actionId={item.actionId || null}
-								title={item.title}
-							/>
-						);
-					})}
-				</ul>
+				<>
+					<ul className="activity-list__content">
+						{acts.map((item, index) => {
+							return (
+								<ActivityItem
+									key={index}
+									user={item.user}
+									blogId={item.blogId}
+									action={item.type === 'comment' ? 'commented on' : 'posted'}
+									actionId={item.actionId || null}
+									title={item.title}
+								/>
+							);
+						})}
+					</ul>
+					{props.activities.length > itemsPerPage && (
+						<div className="activity-list__navi">
+							<Button onClick={pageDec}>-</Button>
+							<p>
+								Page {page + 1}/{Math.ceil(props.activities.length / 10)}
+							</p>
+							<Button onClick={pageInc}>+</Button>
+						</div>
+					)}
+				</>
 			)}
 		</div>
 	);
