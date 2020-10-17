@@ -10,10 +10,12 @@ const BlogItem = (props) => {
 		<li className="blog-item">
 			<Card className="blog-item__card card--lighter">
 				<div className="blog-item__image">
-					<img
-						src={`${process.env.REACT_APP_HOST_URL}/${props.cover}`}
-						alt={props.title}
-					/>
+					<Link to={`/blog/${props.id}`}>
+						<img
+							src={`${process.env.REACT_APP_HOST_URL}/${props.cover}`}
+							alt={props.title}
+						/>
+					</Link>
 				</div>
 				<div className="blog-item__info">
 					<h2>

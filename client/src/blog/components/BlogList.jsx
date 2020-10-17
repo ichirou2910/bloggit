@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import BlogItem from './BlogItem';
 import Button from '../../shared/components/FormElements/Button';
 
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import './BlogList.css';
 
 const itemsPerPage = 5;
@@ -40,6 +41,17 @@ const BlogList = (props) => {
 				<p className="blog-list__empty">No blog written yet</p>
 			) : (
 				<>
+					<div className="activity-list__navi">
+						<Button onClick={pageDec}>
+							<FaChevronLeft />
+						</Button>
+						<p>
+							Page {page + 1}/{Math.ceil(props.blogs.length / 10)}
+						</p>
+						<Button onClick={pageInc}>
+							<FaChevronRight />
+						</Button>
+					</div>
 					<ul className="blog-list__content">
 						{blogs.map((blog, index) => (
 							<BlogItem
@@ -53,15 +65,6 @@ const BlogList = (props) => {
 							/>
 						))}
 					</ul>
-					{props.blogs.length > itemsPerPage && (
-						<div className="activity-list__navi">
-							<Button onClick={pageDec}>-</Button>
-							<p>
-								Page {page + 1}/{Math.ceil(props.blogs.length / 10)}
-							</p>
-							<Button onClick={pageInc}>+</Button>
-						</div>
-					)}
 				</>
 			)}
 		</div>

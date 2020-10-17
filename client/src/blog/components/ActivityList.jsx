@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import ActivityItem from './ActivityItem';
 import Button from '../../shared/components/FormElements/Button';
 
+import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import './ActivityList.css';
 
 const itemsPerPage = 10;
@@ -40,6 +41,17 @@ const ActivityList = (props) => {
 				<p className="activity-list__empty">No activity so far</p>
 			) : (
 				<>
+					<div className="activity-list__navi">
+						<Button onClick={pageDec}>
+							<FaChevronLeft />
+						</Button>
+						<p>
+							Page {page + 1}/{Math.ceil(props.activities.length / 10)}
+						</p>
+						<Button onClick={pageInc}>
+							<FaChevronRight />
+						</Button>
+					</div>
 					<ul className="activity-list__content">
 						{acts.map((item, index) => {
 							return (
@@ -54,15 +66,6 @@ const ActivityList = (props) => {
 							);
 						})}
 					</ul>
-					{props.activities.length > itemsPerPage && (
-						<div className="activity-list__navi">
-							<Button onClick={pageDec}>-</Button>
-							<p>
-								Page {page + 1}/{Math.ceil(props.activities.length / 10)}
-							</p>
-							<Button onClick={pageInc}>+</Button>
-						</div>
-					)}
 				</>
 			)}
 		</div>
