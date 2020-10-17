@@ -8,11 +8,9 @@ const User = db.User;
 const schema = require('../config/schema');
 
 const register = async (req, res, next) => {
-	const email = req.body.email;
-
 	let existingUser;
 	try {
-		existingUser = await User.findOne({ email: email });
+		existingUser = await User.findOne({ name: req.body.name });
 	} catch (err) {
 		res.status(500).json({ message: 'Register failed' });
 		return next(err);

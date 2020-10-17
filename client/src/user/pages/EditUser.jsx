@@ -51,7 +51,6 @@ const EditUser = () => {
 			},
 			true
 		);
-		console.log('Form state updated');
 	}, [setFormData, userInfo]);
 
 	useEffect(() => {

@@ -6,7 +6,6 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import {
 	VALIDATOR_REQUIRE,
 	VALIDATOR_MINLENGTH,
-	VALIDATOR_EMAIL,
 	VALIDATOR_MAXLENGTH,
 } from '../../shared/util/validators';
 import { AuthContext } from '../../shared/context/auth-context';
@@ -71,7 +70,6 @@ const Auth = () => {
 					`${process.env.REACT_APP_API_URL}/user/register`,
 					'POST',
 					JSON.stringify({
-						email: formState.inputs.email.value,
 						name: formState.inputs.name.value,
 						password: formState.inputs.password.value,
 					}),
@@ -94,7 +92,6 @@ const Auth = () => {
 			setFormData(
 				{
 					...formState.inputs,
-					email: undefined,
 					confirm: undefined,
 				},
 				formState.inputs.name.isValid && formState.inputs.password.isValid
@@ -104,10 +101,6 @@ const Auth = () => {
 			setFormData(
 				{
 					...formState.inputs,
-					email: {
-						value: '',
-						isValid: false,
-					},
 					confirm: {
 						value: '',
 						isValid: false,
@@ -129,17 +122,6 @@ const Auth = () => {
 				<h2>Authenticate</h2>
 				<hr />
 				<form onSubmit={authSubmitHandler}>
-					{!isLoginMode && (
-						<Input
-							element="input"
-							id="email"
-							type="email"
-							label="E-mail"
-							validators={[VALIDATOR_REQUIRE(), VALIDATOR_EMAIL()]}
-							errorText="You must enter a valid email"
-							onInput={inputHandler}
-						/>
-					)}
 					<Input
 						element="input"
 						id="name"
