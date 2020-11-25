@@ -48,7 +48,6 @@ const register = async (req, res, next) => {
 	res.status(201).json({
 		user: {
 			userId: user.id,
-			email: user.email,
 			name: user.name,
 			avatar: user.avatar,
 		},
@@ -75,7 +74,6 @@ const login = async (req, res, next) => {
 		res.status(201).json({
 			user: {
 				userId: user.id,
-				email: user.email,
 				name: user.name,
 				avatar: user.avatar,
 			},
