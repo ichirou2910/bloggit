@@ -63,7 +63,7 @@ const Input = (props) => {
 			data.append('user', auth.loginInfo.name);
 			data.append('image', file);
 
-			fetch('http://localhost:5000/api/image/upload', {
+			fetch(`${process.env.REACT_APP_API_URL}/image/upload`, {
 				method: 'POST',
 				body: data,
 				headers: {
