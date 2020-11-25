@@ -24,7 +24,7 @@ const Navigation = () => {
 					</Link>
 				</div>
 			)}
-			{!auth.isLoggedIn && <Button to="/auth">JOIN!</Button>}
+			{!auth.isLoggedIn && <Button to="/auth">JOIN</Button>}
 			{auth.isLoggedIn && (
 				<Button danger onClick={auth.logout}>
 					LOGOUT
