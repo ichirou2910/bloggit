@@ -7,6 +7,11 @@ import Button from '../FormElements/Button';
 
 import './Navigation.css';
 
+const avatarStyle = {
+	border: '4px solid var(--light-secondary-color)',
+	backgroundColor: 'var(--light-secondary-color)',
+};
+
 const Navigation = () => {
 	const auth = useContext(AuthContext);
 
@@ -17,9 +22,8 @@ const Navigation = () => {
 					<Link to={`/user/${auth.loginInfo.name}`}>
 						<Avatar
 							image={`${process.env.REACT_APP_HOST_URL}/${auth.loginInfo.avatar}`}
-							height="3rem"
-							width="3rem"
-							border="0.25rem solid var(--light-secondary-color)"
+							style={avatarStyle}
+							small
 						/>
 					</Link>
 				</div>

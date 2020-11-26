@@ -10,15 +10,7 @@ const Avatar = (props) => {
 			} ${props.large ? 'avatar--large' : ''}`}
 			style={props.style}
 		>
-			<img
-				src={props.image}
-				alt={props.alt}
-				style={{
-					width: props.width,
-					height: props.height,
-					border: props.border,
-				}}
-			/>
+			<img src={props.image} alt={props.alt} />
 		</div>
 	);
 };

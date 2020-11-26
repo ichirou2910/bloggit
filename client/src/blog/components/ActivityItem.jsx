@@ -8,6 +8,13 @@ import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 
 import './ActivityItem.css';
 
+const avatarStyle = {
+	// border: '3px solid var(--lighter-primary-color)',
+	// backgroundColor: 'var(--lighter-primary-color)',
+	border: '3px solid var(--sub-color)',
+	backgroundColor: 'var(--sub-color)',
+};
+
 const ActivityItem = (props) => {
 	const [avatar, setAvatar] = useState();
 	const [blog, setBlog] = useState();
@@ -45,9 +52,8 @@ const ActivityItem = (props) => {
 						<Avatar
 							image={`${process.env.REACT_APP_HOST_URL}/${avatar}`}
 							alt={`${props.user}'s Avatar`}
-							height="4rem"
-							width="4rem"
-							border="0.25rem solid var(--lighter-primary-color)"
+							style={avatarStyle}
+							medium
 						/>
 					</Link>
 					<div className="activity-item__info">

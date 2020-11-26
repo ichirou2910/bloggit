@@ -16,7 +16,8 @@ const userPageAvatarStyle = {
 	margin: '0 auto',
 	marginBottom: '-4rem',
 	transform: 'translateY(-50%)',
-
+	border: '.35rem solid var(--primary-bg-color)',
+	backgroundColor: 'var(--primary-bg-color)',
 	zIndex: 10,
 };
 
@@ -90,7 +91,6 @@ const UserPage = () => {
 								image={`${process.env.REACT_APP_HOST_URL}/${userInfo.avatar}`}
 								alt={`${userInfo.name}'s Avatar`}
 								style={userPageAvatarStyle}
-								border="5px solid var(--primary-bg-color)"
 							/>
 							<div className="user-page__info">
 								<h2>{userName}</h2>
