@@ -20,13 +20,13 @@
 }
 
 .user-page__info {
-	width: 50%;
+	width: 90%;
 	margin: 0 auto;
 }
 
 .user-page__info h2 {
 	display: inline-block;
-	font-size: 2.5rem;
+	font-size: 2rem;
 	font-weight: 600;
 	height: 3ex;
 	line-height: 3ex;
@@ -62,20 +62,14 @@
 @media (max-width: 480px) {
 	.user-page__info p {
 		width: 90%;
-	}
-
-	.user-page__info h2 {
-		margin-top: 1.5rem;
-	}
-
-	.user-page__info p {
 		height: 12.5ex;
 	}
 }
 
 @media (max-width: 320px) {
 	.user-page__info h2 {
-		margin-top: 1.5rem;
+		font-size: 1.5rem;
+		margin-top: 1rem;
 	}
 
 	.user-page__info p {
