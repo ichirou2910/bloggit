@@ -135,18 +135,29 @@ const EditBlog = () => {
 				{
 					Authorization: 'Bearer ' + auth.token,
 				}
-			).then(() => {
-				sendRequest(
-					`${process.env.REACT_APP_API_URL}/activity/delete/${blogId}`,
-					'DELETE',
-					null,
-					{
-						Authorization: 'Bearer ' + auth.token,
-					}
-				).then(() => {
-					setDeleted(true);
+			)
+				.then(() => {
+					sendRequest(
+						`${process.env.REACT_APP_API_URL}/comment/blog/${blogId}`,
+						'DELETE',
+						null,
+						{
+							Authorization: 'Bearer ' + auth.token,
+						}
+					);
+				})
+				.then(() => {
+					sendRequest(
+						`${process.env.REACT_APP_API_URL}/activity/delete/${blogId}`,
+						'DELETE',
+						null,
+						{
+							Authorization: 'Bearer ' + auth.token,
+						}
+					).then(() => {
+						setDeleted(true);
+					});
 				});
-			});
 		} catch (err) {
 			console.log(err);
 		}

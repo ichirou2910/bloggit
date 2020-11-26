@@ -37,5 +37,17 @@ const getByBlog = async (req, res, next) => {
 	res.json(comments);
 };
 
+const deleteByBlog = async (req, res, next) => {
+	try {
+		await Comment.deleteMany({ blog_id: req.params.blog_id });
+	} catch (err) {
+		res.status(500).json({ message: 'Delete failed' });
+		return next(error);
+	}
+
+	res.status(201).json({});
+};
+
 exports.create = create;
 exports.getByBlog = getByBlog;
+exports.deleteByBlog = deleteByBlog;

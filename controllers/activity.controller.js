@@ -38,15 +38,13 @@ const getByName = async (req, res, next) => {
 };
 
 const deleteByBlog = async (req, res, next) => {
-	let act;
 	try {
-		act = await Activity.findOne({ blogId: req.params.blog_id });
+		await Activity.deleteMany({ blogId: req.params.blog_id });
 	} catch (err) {
 		res.status(500).json({ message: 'Fetch activities error' });
 		return next(err);
 	}
 
-	await Activity.deleteOne(act);
 	res.status(201).json({});
 };
 
