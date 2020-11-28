@@ -16,8 +16,7 @@
 	padding: 1rem 1.5rem;
 	background-color: var(--lighter-primary-color);
 	box-shadow: 0 2.5px 6px rgba(0, 0, 0, 0.5);
-	font-size: larger;
-	text-align: justify;
+	line-height: 1.5;
 }
 
 .preview-content h1,
@@ -85,9 +84,25 @@
 	overflow-x: scroll;
 }
 
+@media (max-width: 768px) {
+	.preview-content {
+		font-size: 100%;
+	}
+}
+
 @media (max-width: 480px) {
 	.blog-preview {
 		margin: 1rem auto;
 		border-radius: 0;
+	}
+
+	.preview-content {
+		font-size: 80%;
+	}
+}
+
+@media (max-width: 320px) {
+	.preview-content {
+		font-size: 60%;
 	}
 }
