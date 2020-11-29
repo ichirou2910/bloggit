@@ -5,10 +5,8 @@
 	justify-content: space-between;
 }
 
-.blog-form__label {
-	display: block;
-	font-weight: bold;
-	margin: 0;
+.blog-form__title {
+	font-family: inherit;
 }
 
 .blog-form__submit {

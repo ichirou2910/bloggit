@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { Tabs, TabItem } from '../UIElements/Tab';
 
 import Input from '../../../shared/components/FormElements/Input';
 import BlogPreview from '../../../blog/components/BlogPreview';
@@ -9,6 +9,7 @@ import '../../../blog/pages/BlogForm.css';
 
 const blogPreviewStyle = {
 	width: '100%',
+	border: '2px solid var(--dark-primary-color)',
 	margin: 0,
 };
 
@@ -20,16 +21,8 @@ const previewContentStyle = {
 
 const Editor = (props) => {
 	return (
-		<Tabs forceRenderTabPanel={true}>
-			<TabList>
-				<Tab>
-					<p className="blog-form__label">Content</p>
-				</Tab>
-				<Tab>
-					<p className="blog-form__label">Preview</p>
-				</Tab>
-			</TabList>
-			<TabPanel>
+		<Tabs defaultIndex="1">
+			<TabItem label="Content" index="1">
 				<Input
 					id={props.id}
 					element="textarea"
@@ -39,14 +32,14 @@ const Editor = (props) => {
 					initialValue={props.editValue}
 					initialValid={props.editValid}
 				/>
-			</TabPanel>
-			<TabPanel>
+			</TabItem>
+			<TabItem label="Preview" index="2">
 				<BlogPreview
 					text={props.previewValue}
 					blogPreviewStyle={blogPreviewStyle}
 					previewContentStyle={previewContentStyle}
 				/>
-			</TabPanel>
+			</TabItem>
 		</Tabs>
 	);
 };
