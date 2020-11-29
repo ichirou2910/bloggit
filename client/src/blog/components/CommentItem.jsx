@@ -14,12 +14,13 @@ const CommentItem = (props) => {
 	const { isLoading, error, sendRequest } = useHttpClient();
 
 	const activeCmt = createRef(null);
+	const active = props.active;
 
 	useEffect(() => {
-		if (activeCmt.current) {
+		if (active && activeCmt.current) {
 			scrollToRef(activeCmt);
 		}
-	}, [activeCmt]);
+	}, [active, activeCmt]);
 
 	useEffect(() => {
 		const fetchAvt = async () => {
