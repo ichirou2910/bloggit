@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { Redirect } from 'react-router-dom';
 import {
+	VALIDATOR_MAXLENGTH,
 	VALIDATOR_MINLENGTH,
 	VALIDATOR_REQUIRE,
 } from '../../shared/util/validators';
@@ -108,7 +109,7 @@ const NewBlog = () => {
 						element="input"
 						type="text"
 						label="Title"
-						validators={[VALIDATOR_REQUIRE()]}
+						validators={[VALIDATOR_REQUIRE(), VALIDATOR_MAXLENGTH(64)]}
 						errorText="Please enter a valid title."
 						onInput={inputHandler}
 					/>
