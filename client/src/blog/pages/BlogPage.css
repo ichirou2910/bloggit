@@ -9,7 +9,7 @@
 	padding: 1rem 1rem;
 	background-color: rgba(0, 0, 0, 0.5);
 	color: var(--secondary-text);
-	box-shadow: 0 0 6px #ac1b7388;
+	/* box-shadow: 0 0 6px #ac1b7388; */
 }
 
 .blog-page__header h2 {

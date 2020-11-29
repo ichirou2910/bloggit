@@ -40,9 +40,8 @@
 .user-page__info p {
 	list-style: none;
 	line-height: 3ex;
-	height: 7.5ex;
 	width: 70%;
-	margin: 0 auto 0.5rem auto;
+	margin: 0 auto 1rem auto;
 	text-align: center;
 	font-size: 100%;
 	color: var(--divider-color);
@@ -54,7 +53,6 @@
 
 @media (max-width: 625px) {
 	.user-page__info p {
-		height: 10ex;
 		width: 75%;
 	}
 }
@@ -62,7 +60,6 @@
 @media (max-width: 480px) {
 	.user-page__info p {
 		width: 90%;
-		height: 12.5ex;
 	}
 }
 
@@ -70,9 +67,5 @@
 	.user-page__info h2 {
 		font-size: 1.5rem;
 		margin-top: 1rem;
-	}
-
-	.user-page__info p {
-		height: 15ex;
 	}
 }
