@@ -16,7 +16,6 @@ import ImageUpload from '../../shared/components/FormElements/ImageUpload';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 
 import './BlogForm.css';
-import 'react-tabs/style/react-tabs.css';
 
 const EditBlog = () => {
 	const [blog, setBlog] = useState();

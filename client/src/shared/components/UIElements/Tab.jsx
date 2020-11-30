@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 
 import './Tab.css';
 
 const TabItem = (props) => {
+	TabItem.name = 'TabItem';
 	return <div {...props} />;
 };
 
@@ -12,29 +14,32 @@ const Tabs = (props) => {
 		if (typeof props.onTabClick === 'function') props.onTabClick(newIndex);
 		setBindIndex(newIndex);
 	};
-	const items = props.children.filter((item) => item.type.name === 'TabItem');
 
 	return (
 		<>
 			<div className="tab-menu">
-				{items.map(({ props: { index, label } }) => (
-					<button
-						type="button"
-						key={index}
-						onClick={() => changeTab(index)}
-						className={bindIndex === index ? 'focus' : ''}
-					>
-						<p className="tab-menu__label">{label}</p>
-					</button>
-				))}
+				{props.children
+					.filter((props) => props.type.name === TabItem.name)
+					.map(({ props: { index, label } }) => (
+						<button
+							type="button"
+							key={index}
+							onClick={() => changeTab(index)}
+							className={bindIndex === index ? 'focus' : ''}
+						>
+							<p className="tab-menu__label">{label}</p>
+						</button>
+					))}
 			</div>
 			<div className="tab-view">
-				{items.map(({ props }) => (
+				{props.children.map(({ props }) => (
 					<div
 						{...props}
 						className="tab-view_item"
 						key={props.index}
-						style={{ display: bindIndex === props.index ? 'block' : 'none' }}
+						style={{
+							display: bindIndex === props.index ? 'block' : 'none',
+						}}
 					/>
 				))}
 			</div>
