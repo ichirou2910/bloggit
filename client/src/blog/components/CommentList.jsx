@@ -35,7 +35,7 @@ const CommentList = (props) => {
 		false
 	);
 
-	const submitHandler = async (event) => {
+	const commentAddHandler = async (event) => {
 		event.preventDefault();
 
 		let now = new Date();
@@ -63,8 +63,10 @@ const CommentList = (props) => {
 				}
 			)
 				.then((res) => {
+					// Assign id for comment
+					newComment['_id'] = res._id;
 					// Create new Activity
-					return sendRequest(
+					sendRequest(
 						`${process.env.REACT_APP_API_URL}/activity/create`,
 						'POST',
 						JSON.stringify({
@@ -97,6 +99,36 @@ const CommentList = (props) => {
 		}
 	};
 
+	const commentDeleteHandler = (id) => {
+		console.log(id);
+		try {
+			sendRequest(
+				`${process.env.REACT_APP_API_URL}/comment/${id}`,
+				'DELETE',
+				null,
+				{
+					Authorization: 'Bearer ' + auth.token,
+				}
+			)
+				.then(() => {
+					sendRequest(
+						`${process.env.REACT_APP_API_URL}/activity/comment/${id}`,
+						'DELETE',
+						null,
+						{
+							Authorization: 'Bearer ' + auth.token,
+						}
+					);
+				})
+				.then(() => {
+					const cmts = comments.filter((item) => item._id !== id);
+					setComments([...cmts]);
+				});
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	const activeCmt = useLocation().hash.slice(5);
 
 	return (
@@ -110,20 +142,23 @@ const CommentList = (props) => {
 				<ul className="comment-list__content">
 					{comments.map((item, index) => {
 						return (
-							<CommentItem
-								key={index}
-								active={item._id === activeCmt}
-								id={item._id}
-								user={item.user}
-								content={item.content}
-								time={item.time}
-							/>
+							<div key={index}>
+								<CommentItem
+									key={index}
+									active={item._id === activeCmt}
+									id={item._id}
+									user={item.user}
+									content={item.content}
+									time={item.displayDate}
+									delete={() => commentDeleteHandler(item._id)}
+								/>
+							</div>
 						);
 					})}
 				</ul>
 			)}
 			{auth.isLoggedIn && (
-				<form className="comment-list__new" onSubmit={submitHandler}>
+				<form className="comment-list__new" onSubmit={commentAddHandler}>
 					<Input
 						element="textarea"
 						id="content"
