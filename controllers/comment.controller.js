@@ -48,6 +48,32 @@ const deleteByBlog = async (req, res, next) => {
 	res.status(201).json({});
 };
 
+const deleteById = async (req, res, next) => {
+	let cmt;
+	try {
+		cmt = await Comment.findById(req.params.cmt_id);
+	} catch (err) {
+		res.status(500).json({ message: 'Fetch failed' });
+		return next(err);
+	}
+
+	if (cmt.user !== req.userData.name) {
+		res
+			.status(401)
+			.json({ message: 'You are not allowed to delete this comment' });
+		return;
+	}
+
+	if (!cmt) {
+		res.status(404).json({ message: 'Comment not found' });
+		return;
+	}
+
+	await Comment.deleteOne(cmt);
+	res.status(201).json({});
+};
+
 exports.create = create;
 exports.getByBlog = getByBlog;
 exports.deleteByBlog = deleteByBlog;
+exports.deleteById = deleteById;

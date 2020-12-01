@@ -8,6 +8,7 @@ router.get('/user/:user', activityController.getByName);
 
 router.use(checkAuth);
 router.post('/create', activityController.create);
-router.delete('/delete/:blog_id', activityController.deleteByBlog);
+router.delete('/blog/:blog_id', activityController.deleteByBlog);
+router.delete('/comment/:cmt_id', activityController.deleteByComment);
 
 module.exports = router;

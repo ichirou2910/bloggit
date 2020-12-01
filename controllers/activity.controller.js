@@ -48,7 +48,22 @@ const deleteByBlog = async (req, res, next) => {
 	res.status(201).json({});
 };
 
+const deleteByComment = async (req, res, next) => {
+	try {
+		await Activity.deleteMany({
+			type: 'comment',
+			actionId: req.params.cmt_id,
+		});
+	} catch (err) {
+		res.status(500).json({ message: 'Fetch activities error' });
+		return next(err);
+	}
+
+	res.status(201).json({});
+};
+
 exports.getAll = getAll;
 exports.create = create;
 exports.getByName = getByName;
 exports.deleteByBlog = deleteByBlog;
+exports.deleteByComment = deleteByComment;

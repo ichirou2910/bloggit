@@ -8,5 +8,6 @@ router.get('/blog/:blog_id', commentController.getByBlog);
 router.use(checkAuth);
 router.post('/', commentController.create);
 router.delete('/blog/:blog_id', commentController.deleteByBlog);
+router.delete('/:cmt_id', commentController.deleteById);
 
 module.exports = router;
