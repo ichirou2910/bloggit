@@ -147,7 +147,7 @@ const EditBlog = () => {
 				})
 				.then(() => {
 					sendRequest(
-						`${process.env.REACT_APP_API_URL}/activity/delete/${blogId}`,
+						`${process.env.REACT_APP_API_URL}/activity/blog/${blogId}`,
 						'DELETE',
 						null,
 						{
