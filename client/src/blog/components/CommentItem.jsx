@@ -43,11 +43,8 @@ const CommentItem = (props) => {
 		<li className="comment-item" ref={activeCmt}>
 			{error && <p>{error}</p>}
 			{!isLoading && avatar && (
-				<Card
-					className={`comment-item__card ${
-						props.active && 'card--active'
-					} card--lighter`}
-				>
+				<Card className={`comment-item__card card--lighter`}>
+					{props.active && <div className="comment-item__active"></div>}
 					<Link to={`/user/${props.user}`}>
 						<Avatar
 							small

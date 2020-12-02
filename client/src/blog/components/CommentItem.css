@@ -18,6 +18,22 @@
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 }
 
+.comment-item__active {
+	width: 0.5rem;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	/* background-color: var(--accent-color); */
+	background: linear-gradient(
+		to right,
+		var(--accent-color),
+		var(--lighter-primary-color)
+	);
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
 .comment-item__anchor {
 	display: block;
 	color: var(--primary-text);
