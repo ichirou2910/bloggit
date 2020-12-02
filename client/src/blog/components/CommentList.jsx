@@ -1,9 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
-import {
-	VALIDATOR_MINLENGTH,
-	VALIDATOR_REQUIRE,
-} from '../../shared/util/validators';
+import { VALIDATOR_REQUIRE } from '../../shared/util/validators';
 import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
@@ -21,6 +18,7 @@ const commmentInputStyle = {
 
 const CommentList = (props) => {
 	const [comments, setComments] = useState(props.comments);
+	const [cmtAdded, setCmtAdded] = useState(false);
 
 	const auth = useContext(AuthContext);
 	const { sendRequest } = useHttpClient();
@@ -87,12 +85,13 @@ const CommentList = (props) => {
 					setFormData(
 						{
 							content: {
-								value: '',
+								value: 'New comment',
 								isValid: false,
 							},
 						},
 						false
 					);
+					setCmtAdded(true);
 				});
 		} catch (err) {
 			console.log(err);
@@ -127,6 +126,10 @@ const CommentList = (props) => {
 		} catch (err) {
 			console.log(err);
 		}
+	};
+
+	const inputSubmitHandler = () => {
+		setCmtAdded(false);
 	};
 
 	const activeCmt = useLocation().hash.slice(5);
@@ -166,9 +169,10 @@ const CommentList = (props) => {
 						onInput={inputHandler}
 						onBlur={() => {}}
 						onPaste={() => {}}
-						errorText="Please enter valid content (at least 5 characters)."
-						validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(5)]}
+						validators={[VALIDATOR_REQUIRE()]}
 						style={commmentInputStyle}
+						submitted={cmtAdded}
+						onSubmit={inputSubmitHandler}
 					/>
 					<div className="blog-form__submit">
 						<Button type="submit" disabled={!formState.isValid}>

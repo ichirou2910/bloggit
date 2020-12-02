@@ -19,6 +19,14 @@ const inputReducer = (state, action) => {
 				isTouched: true,
 			};
 		}
+		case 'RESET': {
+			return {
+				...state,
+				value: '',
+				isValid: false,
+				isTouched: false,
+			};
+		}
 		default:
 			return state;
 	}
@@ -31,10 +39,20 @@ const Input = (props) => {
 		isValid: props.initialValid || false,
 	});
 
-	const { id, onInput } = props;
+	const { id, onInput, submitted, onSubmit } = props;
 	const { value, isValid } = inputState;
 
 	const auth = useContext(AuthContext);
+
+	// Reset input field on submission if necessary
+	useEffect(() => {
+		if (submitted) {
+			dispatch({
+				type: 'RESET',
+			});
+			onSubmit();
+		}
+	}, [submitted, onSubmit]);
 
 	useEffect(() => {
 		onInput(id, value, isValid);
