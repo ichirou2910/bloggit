@@ -15,7 +15,7 @@ const BlogSchema = new mongoose.Schema({
 	},
 	cover: {
 		type: String,
-		required: true,
+		required: false,
 	},
 	date: { type: Date, required: true },
 	displayDate: { type: String, required: true },

@@ -58,10 +58,15 @@ const create = async (req, res, next) => {
 		userId: req.body.userId,
 		title: req.body.title,
 		content: req.body.content,
-		cover: req.file.path,
 		date: Date.parse(req.body.date),
 		displayDate: req.body.displayDate,
 	});
+
+	if (req.file) {
+		blog.cover = req.file.path;
+	} else {
+		blog.cover = 'uploads/images/blog-no-image.png';
+	}
 
 	try {
 		await blog.save();
@@ -106,8 +111,9 @@ const update = async (req, res, next) => {
 
 	// Delete old images and replace with new ones (if needed)
 	if (req.file) {
-		fs.unlink(blog.cover, (err) => console.log(err));
-		blog.cover = req.file.path;
+		if (blog.cover !== 'uploads/images/default-avatar.png')
+			fs.unlink(blog.cover, (err) => console.log(err));
+		blog.cover = req.file ? req.file.path : '';
 	}
 
 	try {

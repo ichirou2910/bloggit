@@ -36,7 +36,7 @@ const NewBlog = () => {
 			},
 			cover: {
 				value: null,
-				isValid: false,
+				isValid: true,
 			},
 		},
 		false
