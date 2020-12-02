@@ -14,7 +14,7 @@ const create = async (req, res, next) => {
 		await comment.save();
 	} catch (err) {
 		res.status(500).json({ message: 'Comment creating failed' });
-		return next(error);
+		return next(err);
 	}
 
 	res.status(201).json(comment);
@@ -26,12 +26,12 @@ const getByBlog = async (req, res, next) => {
 		comments = await Comment.find({ blog_id: req.params.blog_id });
 	} catch (err) {
 		res.status(500).json({ message: 'Fetch failed' });
-		return next(error);
+		return next(err);
 	}
 
 	if (!comments) {
 		res.status(404).json({ message: 'No comment found' });
-		return next(error);
+		return;
 	}
 
 	res.json(comments);
@@ -42,7 +42,7 @@ const deleteByBlog = async (req, res, next) => {
 		await Comment.deleteMany({ blog_id: req.params.blog_id });
 	} catch (err) {
 		res.status(500).json({ message: 'Delete failed' });
-		return next(error);
+		return next(err);
 	}
 
 	res.status(201).json({});
