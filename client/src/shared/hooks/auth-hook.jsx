@@ -53,7 +53,13 @@ export const useAuth = () => {
 	}, [login]);
 
 	const setInfo = useCallback((info) => {
-		setLoginInfo(info);
+		setLoginInfo({ ...info });
+		let storedData = localStorage.getItem('userData');
+		if (storedData) {
+			storedData = JSON.parse(storedData);
+			storedData['loginInfo'] = { ...info };
+			localStorage.setItem('userData', JSON.stringify(storedData));
+		}
 	}, []);
 
 	return { token, login, logout, loginInfo, setInfo };
