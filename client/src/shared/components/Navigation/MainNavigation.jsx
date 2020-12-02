@@ -6,7 +6,6 @@ import Navigation from './Navigation';
 import DropdownDrawer from './DropdownDrawer';
 import Backdrop from '../UIElements/Backdrop';
 
-import logo from '../../../images/Logo.png';
 import './MainNavigation.css';
 
 const MainNavigation = () => {
@@ -32,7 +31,7 @@ const MainNavigation = () => {
 				<div>
 					<Link to="/">
 						<img
-							src={logo}
+							src={`${process.env.REACT_APP_HOST_URL}/uploads/images/logo.png`}
 							alt="Bloggit Logo"
 							className="main-navigation__logo"
 						/>
